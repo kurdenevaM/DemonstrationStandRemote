@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="">
+        <file>mainIcon.ico</file>
+		<file>Indicators/offline.png</file>
+		<file>Indicators/online.png</file>
+		<file>Indicators/unknow.png</file>
+		<file>logo1.png</file>
+		<file>pnipu_logo.png</file>
+		<file>NavigationIcons/transmit.png</file>
+        <file>NavigationIcons/information.png</file>
+        <file>NavigationIcons/settings.png</file>
+        <file>NavigationIcons/receive.png</file>
+		<file>NavigationIcons/graphs.png</file>
+		<file>refresh.png</file>
+    </qresource>
+</RCC>

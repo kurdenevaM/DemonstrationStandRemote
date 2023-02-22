@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Product Id="*" 
+             Name="$(env.PROGRAMM_NAME)" Language="1049" 
+             Version="$(var.ProgramVersion)" Manufacturer="PNPPK JSC" 
+             UpgradeCode="{7ED58C4E-B76C-4B5D-9CA4-44A56D18EC34}" Codepage="1251">
+        <Package Id="$(var.PackageUpdateCode)" Description="$(env.PROGRAMM_NAME) Setup" 
+                 Comments="$(env.PROGRAMM_NAME) setup" InstallerVersion="200" Compressed="yes" />
+        <Property Id="ALLUSERS" Value="1" />
+        <MajorUpgrade DowngradeErrorMessage="You are trying to downgrade product. Please delete newer version and try again" 
+                      Schedule="afterInstallValidate" AllowDowngrades="no" Disallow="no"  />
+        <Media Id="1" Cabinet="pnppk.cab" EmbedCab="yes" />
+       
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="ProgramFilesFolder" Name="PFiles">
+                <Directory Name="$(env.PROGRAMM_NAME)" Id="PULT">
+  
+                   <Component Id="PULT_APP" DiskId="1" Guid="{A1890498-B74F-4893-8716-CD632B6A79A7}">
+                        <File Id="PULT_APP_EXECUTABLE" Name="BIN_V_024_M_Remote.exe" KeyPath="yes" Source="$(var.BuildConfiguration)\BIN_V_024_M_Remote.exe">
+                            <Shortcut Id="DesktopShortcut" Directory="DesktopFolder"  Name="$(env.PROGRAMM_NAME)" WorkingDirectory="PULT" Advertise="yes" Icon="BIN_V_024_M_Remote.exe" IconIndex="0" />
+                            <Shortcut Id="ExeShortcut"     Directory="ProgramMenuDir" Name="$(env.PROGRAMM_NAME)" WorkingDirectory="PULT" Advertise="yes" Icon="BIN_V_024_M_Remote.exe" IconIndex="0" />
+                        </File>
+                    </Component>
+                    <Component Id="Qt5Libraries" DiskId="1" KeyPath="yes" Guid="{18A1D548-8F14-426B-9357-5F94ECAE6BF9}">
+                        <File Id="QTCORE.DLL"         Name="Qt5Core.dll"         Source="$(var.QtDir)\$(var.QtVersion)\$(var.Compiler)\bin\Qt5Core.dll" />
+                        <File Id="QTGUI.DLL"          Name="Qt5Gui.dll"          Source="$(var.QtDir)\$(var.QtVersion)\$(var.Compiler)\bin\Qt5Gui.dll" />
+                        <File Id="QTNETWORK.DLL"      Name="Qt5Network.dll"      Source="$(var.QtDir)\$(var.QtVersion)\$(var.Compiler)\bin\Qt5Network.dll" />
+                        <File Id="QTSQL.DLL"          Name="Qt5Sql.dll"          Source="$(var.QtDir)\$(var.QtVersion)\$(var.Compiler)\bin\Qt5Sql.dll" />
+                        <File Id="QTXML.DLL"          Name="Qt5Xml.dll"          Source="$(var.QtDir)\$(var.QtVersion)\$(var.Compiler)\bin\Qt5Xml.dll" />
+                        <File Id="QTWIDGETS.DLL"      Name="Qt5Widgets.dll"      Source="$(var.QtDir)\$(var.QtVersion)\$(var.Compiler)\bin\Qt5Widgets.dll" />
+                        <File Id="QTSERIALPORT.DLL"   Name="Qt5SerialPort.dll"   Source="$(var.QtDir)\$(var.QtVersion)\$(var.Compiler)\bin\Qt5SerialPort.dll" />
+                        <File Id="LIBGCC_S_DW2.DLL"   Name="libgcc_s_dw2-1.dll"  Source="$(var.QtDir)\$(var.QtVersion)\$(var.Compiler)\bin\libgcc_s_dw2-1.dll" />
+                        <File Id="LIBSTDCPP6.DLL"     Name="libstdc++-6.dll"     Source="$(var.QtDir)\$(var.QtVersion)\$(var.Compiler)\bin\libstdc++-6.dll" />
+                        <File Id="LIBWINPTHREAD1.DLL" Name="libwinpthread-1.dll" Source="$(var.QtDir)\$(var.QtVersion)\$(var.Compiler)\bin\libwinpthread-1.dll" />
+                    </Component>
+                    <Directory Name="platforms" Id="PLATFORMS_DIR">
+                        <Component Id="PlatformsPlugins"  DiskId="1" KeyPath="yes" Guid="{2D569C3E-E857-4572-8C7A-9F2429DA42C5}">
+                            <File Id="QMINIMAL.DLL"   Name="qminimal.dll"   Source="$(var.QtDir)\$(var.QtVersion)\$(var.Compiler)\plugins\platforms\qminimal.dll"/>
+                            <File Id="QWINDOWS.DLL"   Name="qwindows.dll"   Source="$(var.QtDir)\$(var.QtVersion)\$(var.Compiler)\plugins\platforms\qwindows.dll"/>
+							<File Id="qoffscreen.dll" Name="qoffscreen.dll" Source="$(var.QtDir)\$(var.QtVersion)\$(var.Compiler)\plugins\platforms\qoffscreen.dll"/>
+                        </Component>
+                    </Directory>
+                </Directory>
+            </Directory>
+            <Directory Id="DesktopFolder" />
+            <Directory Id="ProgramMenuFolder">
+                <Directory Id="ProgramMenuDir" Name="ПНППК">
+                    <Component Id="StartMenuShortcuts" Guid="{051E801E-0D43-4D47-A2CD-A45A1F598218}">
+                        <RemoveFolder Id="ProgramMenuDir" On="uninstall" />
+                        <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Type="string" Value="" />
+                    </Component>
+                </Directory>
+            </Directory>
+        </Directory>
+
+        <Feature Id="ProductFeature" Title="$(env.PROGRAMM_NAME)" Level="1">
+            <ComponentRef Id="PULT_APP" />
+            <ComponentRef Id="Qt5Libraries" />
+            <ComponentRef Id="PlatformsPlugins"/>
+            <ComponentRef Id="StartMenuShortcuts" />
+        </Feature>
+
+        <Icon Id="BIN_V_024_M_Remote.exe" SourceFile="$(var.BuildConfiguration)\BIN_V_024_M_Remote.exe" />
+                
+        <Property Id="ARPPRODUCTICON" Value="APP_ICO" />
+        <Icon Id="APP_ICO" SourceFile="Resources\mainIcon.ico" />
+        
+    </Product>
+</Wix>

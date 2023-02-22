@@ -1,4 +1,36 @@
+# ---> C++
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# ---> Qt
 # C++ objects and libs
+
 *.slo
 *.lo
 *.o
@@ -6,14 +38,11 @@
 *.la
 *.lai
 *.so
-*.so.*
 *.dll
 *.dylib
 
 # Qt-es
-object_script.*.Release
-object_script.*.Debug
-*_plugin_import.cpp
+
 /.qmake.cache
 /.qmake.stash
 *.pro.user
@@ -22,31 +51,16 @@ object_script.*.Debug
 *.qbs.user.*
 *.moc
 moc_*.cpp
-moc_*.h
 qrc_*.cpp
 ui_*.h
-*.qmlc
-*.jsc
 Makefile*
-*build-*
-*.qm
-*.prl
-
-# Qt unit tests
-target_wrapper.*
+*-build-*
 
 # QtCreator
+
 *.autosave
 
-# QtCreator Qml
+#QtCtreator Qml
 *.qmlproject.user
 *.qmlproject.user.*
 
-# QtCreator CMake
-CMakeLists.txt.user*
-
-# QtCreator 4.8< compilation database 
-compile_commands.json
-
-# QtCreator local machine specific files for imported projects
-*creator.user*

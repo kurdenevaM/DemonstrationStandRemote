@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension"
+     xmlns:bal="http://schemas.microsoft.com/wix/BalExtension">
+        <Bundle Name="Пульт-BIN-V-024-M" Version="$(env.PROGRAMM_VERSION)" Manufacturer="PNPPK JSC" UpgradeCode="{F02C06B7-304B-43AE-87AF-BAC9EC670704}" IconSourceFile=".\resources\mainIcon.ico" >
+        <!-- <BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.HyperlinkLicense" />
+        <WixVariable Id="WixStdbaLicenseUrl" Value="" /> -->
+
+        <BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.RtfLicense">
+        <bal:WixStandardBootstrapperApplication LicenseFile=".\setup\license.rtf" />
+        </BootstrapperApplicationRef>
+
+        <Chain>
+            <MsiPackage Id="MAIN_SETUP" SourceFile="setup.msi" Compressed="yes" DisplayInternalUI="yes" SuppressSignatureVerification="no" />
+        </Chain>
+
+	</Bundle>
+</Wix>
