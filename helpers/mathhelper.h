@@ -12,6 +12,10 @@ public:
 
     static double fromRadToDeg(double angle);
     static double fromDegToRad(double angle);
+    
+    static double** multiplyMatrix(double** mat1, double** mat2);
+    static double** multiplyThreeMatrix(double** mat1, double** mat2, double** mat3);
+    static double** transposeMatrix(double** mat);
 };
 
 #endif // MATHHELPER_H
