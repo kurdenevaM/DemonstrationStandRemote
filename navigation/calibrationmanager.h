@@ -8,11 +8,18 @@ class CalibrationManager
 {
 public:
     CalibrationManager();
-    void setCoefs(calibrationCoeffs& coeffs);
+    void setCoeffs(calibrationCoeffs& coeffs);
+    calibrationCoeffs getCoeffs();
     void applyCalibration(navigationPacket& pack);
 
 private:
     calibrationCoeffs _coeffs;
+    int _totalCount = 5000;
+    int _count;
+    navigationPacket _navigationPacketBuf[5000];
+
+    void calibrateAccelerometer(navigationPacket& pack);
+    void calibrateGyroscope(navigationPacket& pack);
 };
 
 #endif // CALIBRATIONMANAGER_H
