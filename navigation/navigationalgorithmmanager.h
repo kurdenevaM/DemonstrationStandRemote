@@ -22,6 +22,17 @@ private:
     velosities _actualVelosities;
     coordinates _actualCoordinates;
     navigationPacket _actualSensorsData;
+    calibrationCoeffs _coeffs;
+
+    int _count = 0;
+    int _totalCount = 5000;
+    navigationPacket _navigationPacketBuf[5000];
+
+    orientation countInitialOrientation();
+    orientation countActualOrientation();
+    double** getOrientationMatrix();
+    velosities countActualVelosities();
+    coordinates countActualCoordinates();
 };
 
 #endif // NAVIGATIONALGORITHMMANAGER_H
