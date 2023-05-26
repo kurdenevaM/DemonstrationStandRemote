@@ -42,3 +42,43 @@ void MathHelper::correctToFrom0To360Angle(double& angle)
 double MathHelper::fromRadToDeg(double angle) { return angle * kRadToDeg; }
 
 double MathHelper::fromDegToRad(double angle) { return angle * kDegToRad; }
+
+double** MathHelper::multiplyMatrix(double** mat1, double** mat2)
+{
+    int n = 3;
+    double** result = new double* [n];
+
+    for (int i = 0; i < n; i++)
+        result[i] = new double[n];
+
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            result[i][j] = 0;
+
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            for (int k = 0; k < n; k++)
+                result[i][j] += mat1[i][k] * mat2[k][j];
+
+    return result;
+}
+
+double** MathHelper::multiplyThreeMatrix(double** mat1, double** mat2, double** mat3)
+{
+    return multiplyMatrix(multiplyMatrix(mat1, mat2), mat3);
+}
+
+double** MathHelper::transposeMatrix(double** mat)
+{
+    int n = 3;
+    double** transposedMat = new double* [n];
+
+    for (int i = 0; i < n; i++)
+        transposedMat[i] = new double[n];
+
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            transposedMat[i][j] = mat[j][i];
+
+    return transposedMat;
+}
